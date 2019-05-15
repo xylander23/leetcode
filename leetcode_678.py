@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 class Solution:
     def checkValidString(self, s: str) -> bool:
         if len(s) == 0:
