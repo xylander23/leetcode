@@ -37,3 +37,14 @@ An empty string is also valid.
 
 最后如果栈为空，那么就为True，否则为False。
 
+# 1004
+**题目：**
+Given an array A of 0s and 1s, we may change up to K values from 0 to 1.
+Return the length of the longest (contiguous) subarray that contains only 1s.
+简单来说就是把尽可能的把0变成1以后得到最大串
+
+**思路：**
+https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window
+
+这里有一种比较巧的思想，题目只是要得出最长的子串，那么我们就可以用两个指针，一个j指最终点一个i指起点。如果它们之间的0大于K，那么就右移i，不然就一直右移j。
+最后你会发现，j就等于len(A)的长度，所以就是看怎么计算i，可以让子串更长。当K小于0以后，就说明之间0大于了最大值，那么就要移i向右，同时如果第i个是0，就要补1给K，不然就不用。
