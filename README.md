@@ -48,3 +48,22 @@ https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2
 
 这里有一种比较巧的思想，题目只是要得出最长的子串，那么我们就可以用两个指针，一个j指最终点一个i指起点。如果它们之间的0大于K，那么就右移i，不然就一直右移j。
 最后你会发现，j就等于len(A)的长度，所以就是看怎么计算i，可以让子串更长。当K小于0以后，就说明之间0大于了最大值，那么就要移i向右，同时如果第i个是0，就要补1给K，不然就不用。
+
+# 991
+**题目：**
+On a broken calculator that has a number showing on its display, we can perform two operations:
+
+Double: Multiply the number on the display by 2, or;
+Decrement: Subtract 1 from the number on the display.
+Initially, the calculator is displaying the number X.
+
+Return the minimum number of operations needed to display the number Y.
+简单说，就是只有-1和*2的操作，计算X要多少步才可以到Y
+**思路：**
+其实X只有两个方向的路可以走，一个是变大（乘2），一个是变小（-1）。
+所以如果Y小于X，只有一种方法，那就是减1，所以这种情况，步数就是X-Y
+
+比较麻烦的是Y大于X，因为这个时候就两种操作都存在。
+
+但是，我们可以直观看出，乘2的最快，所以我们可以把Y一直除二缩小，然后把Y变成比X小的数，这样就变成第一个问题了。
+但如果Y变成一个奇数了怎么办，因为如果是乘二不可能出现奇数情况，所以这说明中间有减1的操作，让它变成奇数，而X减1其实就是Y加1了，所以我们可以给Y+1然后加上一个步数，最后就可以得出变换的步数。
