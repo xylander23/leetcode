@@ -36,18 +36,19 @@ An empty string is also valid.
 遇到右括号，如果栈不为空，弹栈；如果为空，就看可变左括号的变量，如果小于0，就返回False。
 
 最后如果栈为空，那么就为True，否则为False。
+# 881
+The i-th person has weight people[i], and each boat can carry a maximum weight of limit.
 
-# 1004
-**题目：**
-Given an array A of 0s and 1s, we may change up to K values from 0 to 1.
-Return the length of the longest (contiguous) subarray that contains only 1s.
-简单来说就是把尽可能的把0变成1以后得到最大串
+Each boat carries at most 2 people at the same time, provided the sum of the weight of those people is at most limit.
 
-**思路：**
-https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window
+Return the minimum number of boats to carry every given person.  (It is guaranteed each person can be carried by a boat.)
 
-这里有一种比较巧的思想，题目只是要得出最长的子串，那么我们就可以用两个指针，一个j指最终点一个i指起点。如果它们之间的0大于K，那么就右移i，不然就一直右移j。
-最后你会发现，j就等于len(A)的长度，所以就是看怎么计算i，可以让子串更长。当K小于0以后，就说明之间0大于了最大值，那么就要移i向右，同时如果第i个是0，就要补1给K，不然就不用。
+**思路**
+这个问题简化的话就是最大的数是否可以再带一个数列最小数的问题。然后，思路有点像归并排序算法类似，用两个指针来遍历数组。首先我们对数列进行一个排序，然后一个指头部（最大），一个指尾部（最小值），然后从头部开始遍历：
+    1. 如果最大值减limit等于0，那么直接遍历下一个数，n加1
+    2. 如果最大值limit大于0，那么判断这个差是否大于最小值，如果是那么最小值指针减1。
+    3. 否则，n加1
+最后返回n即为答案。
 
 # 991
 **题目：**
@@ -67,3 +68,15 @@ Return the minimum number of operations needed to display the number Y.
 
 但是，我们可以直观看出，乘2的最快，所以我们可以把Y一直除二缩小，然后把Y变成比X小的数，这样就变成第一个问题了。
 但如果Y变成一个奇数了怎么办，因为如果是乘二不可能出现奇数情况，所以这说明中间有减1的操作，让它变成奇数，而X减1其实就是Y加1了，所以我们可以给Y+1然后加上一个步数，最后就可以得出变换的步数。
+
+# 1004
+**题目：**
+Given an array A of 0s and 1s, we may change up to K values from 0 to 1.
+Return the length of the longest (contiguous) subarray that contains only 1s.
+简单来说就是把尽可能的把0变成1以后得到最大串
+
+**思路：**
+https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window
+
+这里有一种比较巧的思想，题目只是要得出最长的子串，那么我们就可以用两个指针，一个j指最终点一个i指起点。如果它们之间的0大于K，那么就右移i，不然就一直右移j。
+最后你会发现，j就等于len(A)的长度，所以就是看怎么计算i，可以让子串更长。当K小于0以后，就说明之间0大于了最大值，那么就要移i向右，同时如果第i个是0，就要补1给K，不然就不用。
