@@ -1,8 +1,8 @@
-[toc]
+[TOC]
 
-本库主要记录平时练习或者公司抽的leetcode的题目答案
+本库主要记录平时练习或者公司抽的[leetcode](https://leetcode.com/)的题目答案
 
-# 第678题
+# 678
 **题目：**
 Given a string containing only three types of characters: '(', ')' and '*', write a function to check 
 whether this string is valid. We define the validity of a string by these rules:
@@ -80,3 +80,23 @@ https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2
 
 这里有一种比较巧的思想，题目只是要得出最长的子串，那么我们就可以用两个指针，一个j指最终点一个i指起点。如果它们之间的0大于K，那么就右移i，不然就一直右移j。
 最后你会发现，j就等于len(A)的长度，所以就是看怎么计算i，可以让子串更长。当K小于0以后，就说明之间0大于了最大值，那么就要移i向右，同时如果第i个是0，就要补1给K，不然就不用。
+
+# 846
+
+**题目：**
+
+爱丽丝有一手（hand）由整数数组给定的牌。 
+
+现在她想把牌重新排列成组，使得每个组的大小都是 W，且由 W 张连续的牌组成。
+
+如果她可以完成分组就返回 true，否则返回 false。
+
+**思想**
+
+先给数组按从小到大排序，每次取数组第一个，然后开始找m+1,m+2..m+w-1的数，从数组中将它们弹出。弹完以后再取数组第一个数，循环下去，直到最后数组可以为空，那么就说明数组可以成顺子。
+
+先判断数组是否能被W整除，如果不能，那就肯定不成立，返回false。
+
+如果可以，先对数组进行升序排序，然后遍历Length(hand)/W次，每次再在找m+1,m+2..m+w-1的数，如果存在就弹出，不存在就报错。
+
+最后如果没有报错，就说明成立，返回true。
